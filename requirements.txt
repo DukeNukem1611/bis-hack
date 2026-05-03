@@ -1,0 +1,6 @@
+sentence-transformers
+rank-bm25
+torch
+fitz
+numpy
+streamlit
