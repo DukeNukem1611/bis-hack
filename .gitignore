@@ -1,0 +1,18 @@
+# Python Virtual Environment
+.venv/
+
+# Python Cache Files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Generated Data / Pickles
+data/knowledge_base.pkl
+*.pkl
+
+# Raw Datasets
+#dataset.pdf
+
+# OS generated files (Optional but good practice)
+.DS_Store
+Thumbs.db

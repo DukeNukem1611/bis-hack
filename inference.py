@@ -93,11 +93,15 @@ def main(input_path, output_path):
         latency = time.time() - start_time
 
         # Ensure exact match with Hackathon JSON schema
-        results.append({
+        result_item = {
             "id": item["id"],
+            "query": query_text,
+            "expected_standards": item.get("expected_standards", []),
             "retrieved_standards": retrieved_standards,
             "latency_seconds": round(latency, 4)
-        })
+        }
+            
+        results.append(result_item)
 
     # 5. WRITE OUTPUT DATASET
     with open(output_path, 'w') as f:
