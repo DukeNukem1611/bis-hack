@@ -41,6 +41,7 @@ BIS_Hackathon/
 ├── inference.py               # Main execution script for judges
 ├── requirements.txt           # Python dependencies
 └── README.md                  # This documentation
+```
 
 ## 🚀 How to Run
 
