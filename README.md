@@ -4,7 +4,7 @@ This repository contains our submission for the **Accelerating MSE Compliance - 
 
 Our solution is a highly optimized Retrieval-Augmented Generation (RAG) pipeline engineered specifically to handle the domain-specific jargon of the Bureau of Indian Standards (BIS) while strictly adhering to the <5 seconds average latency requirement.
 
-## 🧠 Architecture & Code Logic
+##  Architecture & Code Logic
 
 To achieve high accuracy (Hit Rate @3 > 80%, MRR @5 > 0.7) without failing the strict 5-second latency threshold, this pipeline splits the workload into two distinct phases: **Offline Ingestion** and **High-Speed Inference**.
 
@@ -43,7 +43,7 @@ BIS_Hackathon/
 └── README.md                  # This documentation
 ```
 
-## 🚀 How to Run
+##  How to Run
 
 ### Step 1: Install Dependencies
 Ensure you have Python 3.8+ installed. It is highly recommended to use a virtual environment to keep your packages organized.
