@@ -262,6 +262,10 @@ if submitted:
             sorted_standards = sorted(standard_scores.items(), key=lambda x: x[1], reverse=True)
             top_results = sorted_standards[:5]
             
+            # Filter out results with very low relevance scores
+            THRESHOLD = 0.05
+            top_results = [(std_id, score) for std_id, score in top_results if score >= THRESHOLD]
+            
             latency = time.time() - start_time
             
             # Save query and results to history
@@ -278,12 +282,16 @@ if st.session_state.history:
     latest_run = st.session_state.history[0]
     
     st.success(f"Analysis complete in {latest_run['latency']:.2f} seconds.")
-    st.markdown("### Recommended Standards")
     
-    for std_id, score in latest_run['results']:
-        st.markdown(f"""
-        <div class="result-card">
-            <div class="standard-title">Standard {std_id}</div>
-            <div class="metric-badge">Relevance Score: {score:.2f}</div>
-        </div>
-        """, unsafe_allow_html=True)
+    if not latest_run['results']:
+        st.warning("⚠️ No highly relevant standards were found for your query. Please provide more specific details about your product or process.")
+    else:
+        st.markdown("### Recommended Standards")
+        
+        for std_id, score in latest_run['results']:
+            st.markdown(f"""
+            <div class="result-card">
+                <div class="standard-title">Standard {std_id}</div>
+                <div class="metric-badge">Relevance Score: {score:.2f}</div>
+            </div>
+            """, unsafe_allow_html=True)

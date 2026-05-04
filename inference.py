@@ -87,7 +87,10 @@ def main(input_path, output_path):
                 
         # Sort standards by their aggregated cross-encoder scores
         sorted_standards = sorted(standard_scores.items(), key=lambda x: x[1], reverse=True)
-        retrieved_standards = [std_id for std_id, score in sorted_standards][:5]
+        
+        # Filter results by relevance threshold and take top 5
+        SCORE_THRESHOLD = 0.05
+        retrieved_standards = [std_id for std_id, score in sorted_standards if score >= SCORE_THRESHOLD][:5]
 
         # Record latency for the evaluation script
         latency = time.time() - start_time

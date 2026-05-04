@@ -17,9 +17,7 @@ This script processes the raw `dataset.pdf` (BIS SP 21) into a search-ready know
 ### 2. High-Speed Inference (`inference.py`)
 This is the entry-point script evaluated by the judges. It is engineered for maximum speed and exact JSON schema compliance.
 *   **Memory Loading:** It instantly loads the pre-computed embeddings and metadata from disk, bypassing the need to encode the entire corpus at runtime.
-*   **Hybrid Retrieval:** 
-    *   **BM25 (Sparse):** Captures exact string matches (e.g., "33 Grade" or "PUB-01").
-    *   **Dense Search:** Captures the semantic intent of the query using the `all-MiniLM-L6-v2` model.
+*   **Dense Search:** Captures the semantic intent of the query using the `all-MiniLM-L6-v2` model.
 *   **Cross-Encoder Reranking:** The combined top chunks are passed through a lightweight reranker (`ms-marco-MiniLM-L-6-v2`) to perfectly sort the most relevant context to the top.
 *   **Zero-Generation Output:** To ensure a 0% JSON parsing failure rate and keep latency under 1 second per query, the script extracts the winning `Standard_ID` directly from the metadata of the reranked chunks rather than relying on a slow, error-prone LLM generation step.
 
@@ -45,8 +43,25 @@ BIS_Hackathon/
 
 ##  How to Run
 
-### Step 1: Install Dependencies
+### Step 1: Set up Virtual Environment and Install Dependencies
 Ensure you have Python 3.8+ installed. It is highly recommended to use a virtual environment to keep your packages organized.
+
+**1. Create the virtual environment:**
+```bash
+python -m venv .venv
+```
+
+**2. Activate the virtual environment:**
+- **On Windows:**
+  ```bash
+  .venv\Scripts\activate
+  ```
+- **On macOS/Linux:**
+  ```bash
+  source .venv/bin/activate
+  ```
+
+**3. Install dependencies:**
 ```bash
 pip install -r requirements.txt
 ```
